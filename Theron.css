@@ -1,0 +1,295 @@
+/* Ensure html and body cover the full viewport height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply the full background image */
+body {
+    font-family: 'Press Start 2P', cursive; /* Game-like font */
+    color: #ecf0f1; /* Light text color for contrast */
+    background: url('final1.png') no-repeat center center fixed; /* Full background image */
+    background-size: cover; /* Cover the entire page */
+}
+
+/* Fully Transparent Header styles */
+header {
+    position: fixed;
+    top: 5px; /* Adjust top position to create space */
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0); /* Fully transparent background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 300; /* Keep it above other content */
+}
+
+/* Add padding to the main content section to avoid overlap */
+.role-play-container {
+    margin-top: 100px; /* Adjust this value to ensure there's enough space */
+}
+
+/* Content adjustments */
+.left-content {
+    position: relative; /* Changed from absolute */
+    width: 30%; /* Adjust width as needed */
+    color: white; /* Text color for visibility */
+    z-index: 10; /* Ensure it's above other elements */
+    margin-top: 20px; /* Add margin to ensure space from header */
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    position: relative;
+    top: 1px; /* Move logo a little bit down */
+    left: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav items */
+    align-items: center;
+    padding: 10px 40px; /* Increase padding for better spacing */
+    box-sizing: border-box;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 50px;
+}
+
+.nav-links li {
+    margin-left: 5px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 20px; /* Adjust font size if needed */
+    padding: 12px 24px; /* Adjust padding to make the items more rounded */
+    border-radius: 30px; /* Make the items more rounded */
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center; /* Center the text vertically */
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #FFDAB9;
+    border-radius: 24px;
+}
+
+/* Left content section styling */
+.left-content {
+    position: absolute;
+    top: -50%; /* Adjust as needed to create space for the header */
+    left: 5%;
+    width: 30%; /* Adjust width as needed */
+    color: white; /* Text color for visibility */
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.left-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.left-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.btn-explore {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #002E82; /* Main button color */
+    color: #FFFFFF; /* Button text color */
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.btn-explore:hover {
+    background-color: #2364AA; /* Darker color on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Character Window (Left Side) */
+.character-window {
+    background: rgba(44, 62, 80, 0.5); /* Semi-transparent dark background */
+    color: #ecf0f1; /* Light text color for contrast */
+    padding: 20px;
+    text-align: center;
+    border-right: 4px solid rgba(44, 62, 80, 0.6); /* Slightly lighter border for separation */
+    box-sizing: border-box;
+}
+
+/* Character Frame */
+.character-frame {
+    border: none;
+    padding: 5px;
+    margin-top: 10px;
+    width: 80%;
+    height: auto;
+    position: relative;
+    border-radius: 10px; /* Rounded corners for the image */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.character-frame img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Rounded corners for image */
+    object-fit: cover;
+    filter: drop-shadow(0 0 10px #ffffff); /* Golden glow effect */
+}
+
+.character-frame img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Character Info */
+.character-info {
+    margin-top: 8px;
+}
+
+/* Character Quote */
+.character-quote {
+    font-style: italic;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Personality Section */
+.personality {
+    font-size: 16px;
+}
+
+/* Character Stats Section */
+.character-stats {
+    margin-top: 10px;
+    text-align: left;
+    background: rgba(30, 42, 56, 0.5); /* Semi-transparent dark background */
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Light border for contrast */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Padding for a cozy feel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Shadow for depth */
+    box-sizing: border-box;
+}
+
+.character-stats h4 {
+    color: #ecf0f1; /* Light color for headings */
+    margin-bottom: 10px;
+    font-size: 20px; /* Larger font size for emphasis */
+    font-weight: bold; /* Bold text for headings */
+}
+
+.character-stats ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.character-stats li {
+    font-size: 16px;
+    color: #ecf0f1; /* Light color for stats items */
+    margin: 3px 0;
+}
+
+/* Info Section (Right Side: About + Chapters) */
+.info-section {
+    padding: 40px;
+    background: rgba(52, 73, 94, 0.5); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Deep shadow for section */
+    box-sizing: border-box;
+}
+
+/* About Theron Section */
+.description {
+    background: rgba(44, 62, 80, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Personality Section */
+.personality-section {
+    background: rgba(44, 62, 80, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+}
+
+/* Chapters Section */
+.chapter-images {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chapter-box {
+    text-align: center;
+    transition: transform 0.3s ease;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(44, 62, 80, 0.5); /* Semi-transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+}
+
+.chapter-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.chapter-box:hover {
+    transform: scale(1.05);
+}
+
+/* Headings and Important Info Styles */
+h1, h2, h3, h4, h5, h6 {
+    color: #ecf0f1; /* Light color for headings */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Subtle shadow for emphasis */
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.75em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+h5 {
+    font-size: 1.25em;
+}
+
+h6 {
+    font-size: 1em;
+}
+

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Ocean Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        #bgVideo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            /* Center content */
+            flex-direction: column;
+        }
+        .text-container {
+            max-width: 50%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .text-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .text-container p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .dolphin-container {
+            position: absolute;
+            left: 20px;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .dolphin-container img {
+            width: 100%;
+            height: 100%;
+        }
+        .name-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            /* Center horizontally */
+            margin: 20px auto;
+        }
+        .name-box h2 {
+            margin-bottom: 20px;
+        }
+        .name-box input[type="text"] {
+            padding: 15px;
+            font-size: 18px;
+            margin: 20px 0;
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        .name-box button {
+            padding: 15px 25px;
+            background-color: #3586ff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .name-box button:hover {
+            background-color: #2868cc;
+        }
+        #quiz, #leaderboard {
+            display: none;
+        }
+        .flashcard {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            margin: 20px auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .question {
+            margin: 20px 0;
+            font-size: 24px;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .options button {
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #3586ff;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .options button:hover {
+            background-color: #ddd;
+        }
+        .timer {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .leaderboard {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="bgVideo">
+        <source src="vecteezy_under-water-with-sun-light-in-the-ocean_5166758.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <section>
+        <!-- Player Name Entry -->
+        <div class="container" id="playerNameContainer">
+            <div class="text-container" id="textContainer">
+                <h2 id="welcomeText"></h2>
+                <div id="nameBoxContainer" style="display:none;">
+                    <div class="name-box">
+                        <h2>Enter Player Name</h2>
+                        <input type="text" id="playerName" placeholder="Enter your name">
+                        <button onclick="startQuiz()">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dolphin-container">
+                <img src="dolphin.png" alt="Dolphin">
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="container" id="quiz">
+            <div class="flashcard">
+                <h2 id="questionTitle">Ocean Quiz</h2>
+                <div class="timer">Time: <span id="time">0</span> seconds</div>
+                
+                <!-- Question Bubble -->
+                <div id="question" class="question"></div>
+                
+                <!-- Options -->
+                <div class="options" id="options"></div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="container" id="leaderboard">
+            <div class="flashcard">
+                <h2 id="completionMessage"></h2>
+                <div class="leaderboard" id="leaderboardContent"></div>
+                <button onclick="restartGame()">Play Again</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const welcomeText = "WELCOME TO UNDERWATER QUIZ";
+        let currentIndex = 0;
+
+        function typeWelcomeText() {
+            if (currentIndex < welcomeText.length) {
+                document.getElementById('welcomeText').textContent += welcomeText.charAt(currentIndex);
+                currentIndex++;
+                setTimeout(typeWelcomeText, 100); // Adjust the speed here (100ms per letter)
+            } else {
+                document.getElementById('nameBoxContainer').style.display = 'block';
+            }
+        }
+
+        window.onload = () => {
+            typeWelcomeText();
+        };
+
+        const quizQuestions = [
+            {
+                question: "What is the largest ocean on Earth?",
+                options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+                answer: "Pacific Ocean"
+            },
+            {
+                question: "What ocean surrounds the North Pole?",
+                options: ["Southern Ocean", "Arctic Ocean", "Atlantic Ocean", "Indian Ocean"],
+                answer: "Arctic Ocean"
+            },
+            {
+                question: "Which ocean is the warmest?",
+                options: ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Southern Ocean"],
+                answer: "Indian Ocean"
+            },
+            {
+                question: "What percentage of the Earth's surface is covered by oceans?",
+                options: ["50%", "60%", "71%", "80%"],
+                answer: "71%"
+            },
+            {
+                question: "Which ocean is home to the Great Barrier Reef?",
+                options: ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean"],
+                answer: "Pacific Ocean"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let playerTime = 0;
+        let timerInterval;
+        let leaderboard = [];
+
+        function startQuiz() {
+            const playerName = document.getElementById('playerName').value;
+            if (!playerName) {
+                alert("Please enter your name!");
+                return;
+            }
+            document.getElementById('playerNameContainer').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+            document.getElementById('bgVideo').src = 'second video.mp4'; // Change to the new video
+            displayQuestion();
+
+            // Start timer
+            timerInterval = setInterval(() => {
+                playerTime++;
+                document.getElementById('time').textContent = playerTime;
+            }, 1000);
+        }
+
+        function displayQuestion() {
+            const currentQuiz = quizQuestions[currentQuestionIndex];
+            document.getElementById('question').textContent = currentQuiz.question;
+
+            // Clear previous options
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = "";
+
+            currentQuiz.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.onclick = () => checkAnswer(button, option, currentQuiz.answer);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(button, selectedOption, correctAnswer) {
+            if (selectedOption === correctAnswer) {
+                button.style.backgroundColor = "green"; // Turn the button green for correct answer
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < quizQuestions.length) {
+                        displayQuestion();
+                    } else {
+                        endQuiz();
+                    }
+                }, 1000); // Delay of 1 second before moving to the next question
+            } else {
+                button.style.backgroundColor = "red"; // Turn the button red for incorrect answer
+            }
+        }
+
+        function endQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('leaderboard').style.display = 'block';
+            const playerName = document.getElementById('playerName').value;
+            document.getElementById('completionMessage').textContent = `Congratulations ${playerName}! You've completed the quiz.`;
+
+            leaderboard.push({ name: playerName, time: playerTime });
+            updateLeaderboard();
+        }
+
+        function updateLeaderboard() {
+            leaderboard.sort((a, b) => a.time - b.time);
+            let leaderboardContent = "<h3>Leaderboard</h3><ul>";
+            leaderboard.forEach(entry => {
+                leaderboardContent += `<li>${entry.name} - ${entry.time} seconds</li>`;
+            });
+            leaderboardContent += "</ul>";
+            document.getElementById('leaderboardContent').innerHTML = leaderboardContent;
+        }
+
+        function restartGame() {
+            currentQuestionIndex = 0;
+            playerTime = 0;
+            document.getElementById('time').textContent = "0";
+            document.getElementById('leaderboard').style.display = 'none';
+            document.getElementById('playerNameContainer').style.display = 'block';
+            document.getElementById('playerName').value = "";
+            document.getElementById('welcomeText').textContent = "";
+            currentIndex = 0;
+            typeWelcomeText();
+        }
+    </script>
+</body>
+</html>

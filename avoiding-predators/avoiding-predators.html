@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquatic Animal Endless Run</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="score">Score: 0</div>
+  </div>
+
+  <!-- Modal structure -->
+  <div id="damageModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="hideDamageModal()">&times;</span>
+      <h2>Game Over!</h2>
+      <div class="score-container">
+        <!-- Final score will be centered in this container -->
+        <p id="finalScore"></p>
+      </div>
+      <div id="damageMessage"></div>
+      <button id="retryButton" onclick="restartGame()">Retry</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

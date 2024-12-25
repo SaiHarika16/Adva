@@ -1,0 +1,105 @@
+/* Basic styling for the page */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #001f3f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#game-container {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  border: 3px solid #0077be;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  background-color: #0077be; /* Simulate ocean */
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 24px;
+  z-index: 10;
+}
+
+/* Modal styles */
+#damageModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  /*overflow: auto;  Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text inside */
+}
+
+.modal-content {
+  color:#004080;
+  background-color: #a5ddfd;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Max width for larger screens */
+  border-radius: 10px; /* Rounded corners */
+  transform: translateY(-20%);
+}
+
+#damageMessage {
+  text-align: left; /* Align text to the left */
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Retry button styling */
+#retryButton {
+  background-color:#004080; /* Blue background */
+  color: white; /* White text color */
+  border: none; /* Remove default border */
+  padding: 12px 24px; /* Add padding for better spacing */
+  text-align: center; /* Center text inside button */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Inline block for better control */
+  font-size: 18px; /* Larger font size for better readability */
+  font-weight: bold; /* Bold text for emphasis */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+#retryButton:hover {
+  background-color:#001f3f; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+#retryButton:active {
+  background-color:#0077be; /* Even darker blue when button is pressed */
+  transform: scale(1); /* Reset size when button is pressed */
+}
+

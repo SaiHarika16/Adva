@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myths and Facts</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('5815541.psd.png'); 
+            background-size: cover; /* Adjust to cover the entire viewport */
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .heading {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d9ff; /* Light ocean blue */
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adding shadow for better readability */
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem; /* Space between cards and buttons */
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 400px;  /* Increased width */
+            height: 300px; /* Increased height */
+            perspective: 1000px;
+            margin: 1rem;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .flip-card-front {
+            background-color: #ffffff;
+            color: #004d66;
+        }
+
+        .flip-card-back {
+            background-color: #00d9ff;
+            color: #004d66;
+            transform: rotateY(180deg);
+        }
+
+        .card-heading {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(0, 77, 102, 0.7); /* Transparent effect for heading */
+            margin-bottom: 1rem;
+        }
+
+        .card-content {
+            font-size: 1.2rem; /* Increased font size for content */
+            color: #004d66;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #004d66; /* Dark ocean blue */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #008fb3; /* Bright ocean blue */
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">MYTHS & FACTS</div>
+    <div class="card-container" id="cardContainer">
+        <!-- Cards will be dynamically added here -->
+    </div>
+    <div class="btn-container">
+        <button class="btn" id="prevBtn" onclick="prevPage()" disabled>Previous</button>
+        <button class="btn" id="nextBtn" onclick="nextPage()">Next</button>
+    </div>
+
+    <script>
+        const myths = [
+            "Sharks are the biggest threat to humans in the ocean.",
+            "Coral reefs are just pretty tourist attractions.",
+            "The Pacific Garbage Patch is a large island of trash.",
+            "Plastic pollution only affects marine life."
+        ];
+
+        const facts = [
+            "Humans are a far greater threat to sharks. Over 100 million sharks are killed annually due to finning and bycatch, while shark attacks on humans are exceedingly rare.",
+            "Coral reefs support 25% of all marine species, protect coastlines from storms, and generate billions in economic activity through fisheries, tourism, and coastal protection. Without them, entire ecosystems could collapse.",
+            "The Pacific Garbage Patch is more accurately described as a vast area filled with microplastics and other debris, not a solid island of trash.",
+            "Microplastics and chemicals from plastic can enter the food chain, affecting human health as well."
+        ];
+
+        let currentPage = 0;
+        const itemsPerPage = 2;
+
+        function createCard(myth, fact) {
+            const card = document.createElement('div');
+            card.className = 'flip-card';
+
+            const cardInner = document.createElement('div');
+            cardInner.className = 'flip-card-inner';
+
+            const cardFront = document.createElement('div');
+            cardFront.className = 'flip-card-front';
+            cardFront.innerHTML = `
+                <div class="card-heading">Myth</div>
+                <div class="card-content">${myth}</div>
+            `;
+
+            const cardBack = document.createElement('div');
+            cardBack.className = 'flip-card-back';
+            cardBack.innerHTML = `
+                <div class="card-heading">Fact</div>
+                <div class="card-content">${fact}</div>
+            `;
+
+            cardInner.appendChild(cardFront);
+            cardInner.appendChild(cardBack);
+            card.appendChild(cardInner);
+
+            return card;
+        }
+
+        function updatePage() {
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = '';
+
+            const startIndex = currentPage * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, myths.length);
+
+            for (let i = startIndex; i < endIndex; i++) {
+                const card = createCard(myths[i], facts[i]);
+                cardContainer.appendChild(card);
+            }
+
+            document.getElementById('prevBtn').disabled = currentPage === 0;
+            document.getElementById('nextBtn').disabled = endIndex >= myths.length;
+        }
+
+        function nextPage() {
+            currentPage++;
+            updatePage();
+        }
+
+        function prevPage() {
+            currentPage--;
+            updatePage();
+        }
+
+        window.onload = updatePage;
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+/* Basic Reset and Body Styles */
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%; 
+}
+
+body {
+    background: url('background.png') no-repeat center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Press Start 2P', cursive; /* Apply font globally */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding-bottom: 100px; /* Add space for footer or other content if needed */
+}
+
+/* Fully Transparent Header styles */
+header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0); /* Fully transparent background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 300; /* Keep it above other content */
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    position: relative;
+    top: 1px; /* Move logo a little bit down */
+    left: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav items */
+    align-items: center;
+    padding: 10px 40px; /* Increase padding for better spacing */
+    box-sizing: border-box;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 50px;
+}
+
+.nav-links li {
+    margin-left: 5px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 20px; /* Adjust font size if needed */
+    padding: 12px 24px; /* Adjust padding to make the items more rounded */
+    border-radius: 30px; /* Make the items more rounded */
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center; /* Center the text vertically */
+}
+
+.nav-links a:hover {
+    background-color:#002E82;
+    color: #FFDAB9;
+    border-radius: 24px;
+}
+
+/* Styling for the left-content box */
+.left-content {
+    position: absolute;
+    top: 15%; /* Adjust as needed */
+    left: 5%;
+    width: 30%; /* Adjust width as needed */
+    color: white; /* Text color for visibility */
+    z-index: 10; /* Ensure it's above other elements */
+    padding: 20px; /* Add padding inside the box */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    border-radius: 15px; /* Rounded corners for the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Slight shadow for depth */
+    backdrop-filter: blur(10px); /* Apply a blur effect for a frosted glass appearance */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Style for headings within the left-content box */
+.left-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Style for paragraphs within the left-content box */
+.left-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Styling for the Explore button */
+.btn-explore {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #002E82; /* Main button color */
+    color: #FFFFFF; /* Button text color */
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+.btn-explore:hover {
+    background-color: #2364AA; /* Darker color on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+
+/* Positioning the clouds */
+.cloud1, .cloud2, .cloud3 {
+    position: fixed;
+}
+
+.cloud1 {
+    top: 15px;
+    left: -5px; /* Adjusted from -50px */
+    width: 100px;
+}
+
+.cloud2 {
+    top: 190px;
+    left: 0%; /* Adjusted from 0 to fit within viewport */
+    width: 150px;
+}
+
+.cloud3 {
+    top: -2px;
+    left: 0;
+    width: 150px;
+}
+
+.parallax-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.parallax-layer {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.land {
+    position: absolute; /* Ensure correct positioning */
+    bottom: -55px; /* Adjusted to be just above the ocean */
+    left: 0px; /* Ensure it's within view */
+    width: 100%; /* Adjust width as needed */
+    height: 300px; /* Adjust height to fit */
+    z-index: 151; /* Ensure land is above the ocean */
+}
+
+.ocean {
+    position: absolute; /* Ensure correct positioning */
+    bottom: 0; /* Position at the bottom */
+    left: -490px; /* Adjusted from -400px to fit within view */
+    width: 700%; /* Increased width to be a bit bigger */
+    height: 200px; /* Adjust height to fit */
+    z-index: 150; /* Ensure correct layering */
+}
+
+.sun {
+    position: absolute;
+    top: 20px; /* Adjust to fit within view */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center the sun */
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    z-index: 250; /* Ensure it's above the ocean */
+    mix-blend-mode: screen; /* Blend mode for sun */
+    opacity: 1.9; /* Adjust opacity to make it less intense */
+}
+
+/* Image section styling similar to text-section */
+.image-section {
+    position: relative;
+    text-align: center; /* Center the content */
+    padding: 50px; /* Add padding for spacing */
+    background: url('final1.png') no-repeat center center; /* Background image */
+    background-size: cover; /* Cover the section */
+    color: white; /* Text color for visibility */
+    min-height: 100vh; /* At least the viewport height */
+    height: 800vh; /* Extend height for scrolling effect */
+}
+
+/* Container for images and buttons */
+.image-container {
+    display: flex;
+    justify-content: space-around; /* Space between images */
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Space between individual items */
+    padding: 20px; /* Padding around the container */
+}
+
+/* Style for each image item */
+.image-item {
+    position: relative; /* For button positioning */
+    flex: 1; /* Allow items to grow */
+    min-width: 220px; /* Minimum width for responsive design */
+    max-width: 350px; /* Optional: set a max-width */
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background for glass effect */
+    border-radius: 15px; /* Rounded corners for the card */
+    padding: 30px; /* Increased padding around the image for more space */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly more prominent shadow */
+    backdrop-filter: blur(10px); /* Apply a blur effect for glass appearance */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for a glass-like look */
+    overflow: hidden; /* Hide overflow to maintain rounded corners */
+    margin: 10px; /* Space around each item */
+}
+
+/* Style for character names */
+.character-name {
+    font-size: 1.5em; /* Size for the character name */
+    margin-bottom: 10px; /* Space below the name */
+    color: #fff; /* White text for contrast */
+}
+
+/* Style for images */
+.image-item img {
+    width: 100%; /* Full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners for images */
+    margin-bottom: 20px; /* Space between the image and the text */
+}
+
+/* Style for the description text */
+.image-description {
+    font-size: 1em; /* Size for the description text */
+    margin-bottom: 76px; /* Space between the description and the button */
+    color: #fff; /* White text for contrast */
+}
+
+/* Style for the role-play button */
+.role-play-button {
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    border: none;
+    padding: 12px 24px; /* Increased padding for a larger button */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase; /* Uppercase text */
+    position: absolute;
+    bottom: 25px; /* Adjusted for more space */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 20px; /* Space between the button and the description text */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    z-index: 10; /* Ensure the button is above other elements */
+}
+
+/* Hover effect for the role-play button */
+.role-play-button:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+}
+
+/* Footer styling */
+.footer {
+    height: 50px; /* Adjust height as needed */
+}

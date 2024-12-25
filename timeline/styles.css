@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('background.jpeg'); /* Add your background image */
+  background-size: cover; /* Ensures the background covers the entire screen */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents the background from repeating */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+  
+/* Container for the timeline that allows horizontal scrolling */
+.timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 500px; /* Move the timeline down */
+  overflow-x: auto; /* Enable horizontal scroll */
+  padding-bottom: 20px; /* Space for the scrollbar */
+  white-space: nowrap; /* Keep items in one line */
+  height: 100px; /* Height of the timeline container */
+}
+
+/* Custom scrollbar styling */
+.timeline::-webkit-scrollbar {
+  height: 12px; /* Scrollbar height */
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background-color: #0077be; /* Scrollbar color */
+  border-radius: 6px; /* Rounded scrollbar */
+}
+
+.timeline::-webkit-scrollbar-track {
+  background-color: transparent; /* Transparent track */
+}
+
+/* Connecting line */
+.timeline-line {
+  position: absolute;
+  top: 50%; /* Center the line vertically */
+  left: 0;
+  right: 0;
+  height: 4px; /* Thickness of the line */
+  background-color: #0077be; /* Line color */
+  z-index: 1; /* Send the line behind the events */
+  transform: translateY(-50%); /* Center the line */
+}
+
+/* Small, round event markers */
+.event {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 0 40px;
+  background-color: #352282;
+  color: white;
+  border-radius: 50%;
+  display: inline-flex; /* Keep events in a single row */
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  user-select: none;
+  z-index: 2; /* Ensure the events are above the line */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Hover effect */
+.event:hover {
+  background-color: #005f8b;
+  transform: scale(1.1);
+}
+
+.event-link {
+  text-decoration: none; /* Remove underline from links */
+}
+
+.event-link:hover .event {
+  background-color: #005f8b; /* Maintain hover effect for events */
+  transform: scale(1.1);
+}

@@ -1,0 +1,188 @@
+/* General Body and HTML Styles */
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: linear-gradient(to right, #002E82, #2364AA); /* Blue gradient */
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    padding-bottom: 100px;
+    color: #fff;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 300; /* Keep it above other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    color: #fff; /* Updated to match new theme */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #FFDAB9; /* Light color on hover */
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+}
+
+.nav-item {
+    margin-left: 30px;
+}
+
+.nav-link {
+    color: #fff; /* Updated to match new theme */
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5); /* Subtle glow */
+}
+
+.nav-link.active {
+    color: #FFDAB9; /* Lighter color for active link */
+}
+
+.nav-link:hover {
+    color: #FFDAB9; /* Lighter color on hover */
+}
+
+/* Background Styles */
+.background {
+    background-image: url('final.png'); /* Updated background image */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Container Styles */
+.connect-container {
+    background: rgba(255, 255, 255, 0.329); /* Darker semi-transparent background */
+    padding: 40px;
+    border: 1px solid #FFDAB9; /* Border for visibility */
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+/* Heading Styles */
+.connect-container h1 {
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.connect-container h2 {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    border-radius: 5px;
+    border: 1px solid #FFDAB9;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    border-radius: 5px;
+    background-color: #002E82;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #2364AA;
+}
+
+/* Friend List Styles */
+.friend-list {
+    margin-bottom: 20px;
+}
+
+.friend {
+    padding: 15px;
+    border: 1px solid #FFDAB9;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px;
+}
+
+.friend button {
+    border-radius: 5px;
+    background-color: #002E82;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.friend button:hover {
+    background-color: #2364AA;
+}
+
+/* Leaderboard Styles */
+.leaderboard {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#leaderboardTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#leaderboardTable th, #leaderboardTable td {
+    border: 1px solid #FFDAB9;
+    padding: 10px;
+    text-align: left;
+}
+
+#leaderboardTable th {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#leaderboardTable tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#leaderboardTable tr:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}

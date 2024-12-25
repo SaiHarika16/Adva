@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with Friends - Cyberpunk Theme</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+             
+            </ul>
+        </div>
+    </nav>
+
+    <div class="background">
+        <div class="connect-container">
+            <h1>Connect with Friends</h1>
+
+            <!-- Search for friends -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by username">
+                <button type="button" onclick="searchFriend()">Search</button>
+            </div>
+
+            <!-- Display friends' levels and XP -->
+            <div class="friend-list" id="friendList">
+                <h2>Your Friends</h2>
+                <!-- Placeholder indicating no users initially -->
+                <div class="friend placeholder">
+                    <p><strong>Username:</strong> </p>
+                    <p><strong>Points:</strong> </p>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="leaderboard">
+                <h2>Leaderboard</h2>
+                <table id="leaderboardTable">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Username</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <tr>
+                            <td colspan="4" style="text-align: center;">No leaderboard data available</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const friends = [
+            { username: 'JohnDoe', level: 8, xp: 1200 },
+            { username: 'AliceSmith', level: 15, xp: 2500 },
+            { username: 'BobMartin', level: 12, xp: 1800 }
+        ];
+
+        let followedFriends = [];
+
+        function searchFriend() {
+            const username = document.getElementById('searchInput').value;
+            const friendList = document.getElementById('friendList');
+
+            const friend = friends.find(friend => friend.username.toLowerCase() === username.toLowerCase());
+
+            if (friend) {
+                friendList.innerHTML = '<h2>Your Friends</h2>';
+                const friendEntry = document.createElement('div');
+                friendEntry.classList.add('friend');
+                friendEntry.innerHTML = `
+                    <p><strong>Username:</strong> ${friend.username}</p>
+                    <p><strong>Level:</strong> ${friend.level}</p>
+                    <p><strong>XP:</strong> ${friend.xp}</p>
+                    <button onclick="followUser('${friend.username}')">Follow</button>
+                `;
+                friendList.appendChild(friendEntry);
+            } else {
+                alert('Friend not found.');
+            }
+        }
+
+        function followUser(username) {
+            if (!followedFriends.includes(username)) {
+                followedFriends.push(username);
+                alert(`You are now following: ${username}`);
+                updateLeaderboard();
+            } else {
+                alert(`You are already following: ${username}`);
+            }
+        }
+
+        function updateLeaderboard() {
+            const leaderboardBody = document.getElementById('leaderboardBody');
+            leaderboardBody.innerHTML = '';
+
+            followedFriends.forEach((username, index) => {
+                const friend = friends.find(friend => friend.username === username);
+                const leaderboardEntry = document.createElement('tr');
+                leaderboardEntry.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${friend.username}</td>
+                    <td>${friend.level}</td>
+                    <td>${friend.xp} XP</td>
+                `;
+                leaderboardBody.appendChild(leaderboardEntry);
+            });
+
+            if (followedFriends.length === 0) {
+                leaderboardBody.innerHTML = `<tr>
+                    <td colspan="4" style="text-align: center;">No leaderboard data available</td>
+                </tr>`;
+            }
+        }
+    </script>
+
+</body>
+</html>

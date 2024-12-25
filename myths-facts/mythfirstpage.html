@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Myths and Facts</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('5815541.psd.png'); 
+            background-size: cover; /* Adjust to cover the entire viewport */
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .welcome-message {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00d9ff; /* Light ocean blue */
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in-words span {
+            display: inline-block;
+            opacity: 0;
+        }
+
+        .fade-in-words span:nth-child(1) { animation: fadeIn 0.5s ease forwards 0s; }
+        .fade-in-words span:nth-child(2) { animation: fadeIn 0.5s ease forwards 0.2s; }
+        .fade-in-words span:nth-child(3) { animation: fadeIn 0.5s ease forwards 0.4s; }
+        .fade-in-words span:nth-child(4) { animation: fadeIn 0.5s ease forwards 0.6s; }
+        .fade-in-words span:nth-child(5) { animation: fadeIn 0.5s ease forwards 0.8s; }
+        .fade-in-words span:nth-child(6) { animation: fadeIn 0.5s ease forwards 1s; }
+        .fade-in-words span:nth-child(7) { animation: fadeIn 0.5s ease forwards 1.2s; }
+        .fade-in-words span:nth-child(8) { animation: fadeIn 0.5s ease forwards 1.4s; }
+        .fade-in-words span:nth-child(9) { animation: fadeIn 0.5s ease forwards 1.6s; }
+        .fade-in-words span:nth-child(10) { animation: fadeIn 0.5s ease forwards 1.8s; }
+
+        .btn-container {
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #004d66; /* Dark ocean blue */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #008fb3; /* Bright ocean blue */
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="fade-in-words welcome-message">
+            <span>WELCOME!</span>
+            <span>LET'S</span>
+            <span>LEARN</span>
+            <span>THE</span>
+            <span>MYTHS</span>
+            <span>AND</span>
+            <span>FACTS</span>
+            <span>ABOUT</span>
+            <span>THE</span>
+            <span>OCEAN!</span>
+        </h1>
+        <div class="btn-container">
+            <button class="btn" onclick="goToNextPage()">Let's Go</button>
+        </div>
+    </div>
+
+    <script>
+        function goToNextPage() {
+            window.location.href = 'mythsfacts.html'; // Change to your next page URL
+        }
+    </script>
+</body>
+</html>
